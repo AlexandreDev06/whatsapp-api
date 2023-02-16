@@ -10,10 +10,4 @@ class WppSessionsController < ApplicationController
     response = Whatsapp::SessionManager.new(@user).status_session
     render json: response.to_json, status: :ok
   end
-
-  private
-
-  def set_user
-    @user = User.first
-  end
 end

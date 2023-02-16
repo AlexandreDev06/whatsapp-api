@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
   before_action :authenticate_user
+  before_action :set_user
 
   private
 
@@ -15,5 +16,9 @@ class ApplicationController < ActionController::API
     else
       render json: { error: 'Token not found' }, status: :unauthorized
     end
+  end
+
+  def set_user
+    @user = User.first
   end
 end

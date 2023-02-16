@@ -9,7 +9,7 @@ services:
     container_name: recdin_app
     hostname: recdin_app
     ports:
-      - 5050:3000
+      - 3030:3000
     tty: true
     depends_on:
       - db
@@ -34,7 +34,9 @@ services:
       - db
     volumes:
       - ./recdin-whatsapp-api:/recdin-whatsapp-api
-    command: bash -c "redis-server --daemonize yes --requirepass Recdin2023! && bundle exec sidekiq -C config/sidekiq.yml"
+    command: bash -c "redis-server --requirepass Recdin2023! --daemonize yes && bundle exec sidekiq -C config/sidekiq.yml"
+    ports:
+      - 6379:6379
     networks:
       - recdin-network
 

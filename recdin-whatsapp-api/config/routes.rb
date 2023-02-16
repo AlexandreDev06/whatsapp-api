@@ -13,6 +13,10 @@ Rails.application.routes.draw do
         post 'create_session'
         get 'status_session'
       end
+
+      resource :messages, only: [] do
+        post 'send_message'
+      end
     end
   end
 end

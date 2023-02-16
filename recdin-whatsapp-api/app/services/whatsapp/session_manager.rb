@@ -23,7 +23,7 @@ module Whatsapp
       if body['status'] == 'QRCODE'
         { status: 'QRCODE', qrcode: body['qrcode'] }
       else
-        { status: cases_status[body['status']] }
+        { status: body['status'], message: cases_status[body['status']] }
       end
     end
 

@@ -32,5 +32,7 @@
 # Ignore master key for decrypting credentials and more.
 /recdin-whatsapp-api/config/master.key
 
+# Ignoer dumb rdb of redis
+/recdin-whatsapp-api/dump.rdb
 # ignore envs
 /recdin-whatsapp-api/.env

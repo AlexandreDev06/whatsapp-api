@@ -1,4 +1,4 @@
-FROM node:14.17-alpine3.13 as builder
+FROM node:16.19-alpine3.17 as builder
 
 RUN apk add wget && \
     apk add --no-cache git
@@ -10,7 +10,7 @@ WORKDIR /home/node/app
 COPY ./config.json /home/node/app/src
 RUN yarn install
 
-FROM node:14.17-alpine3.13
+FROM node:16.19-alpine3.17
 WORKDIR /home/node/app
 RUN apk add chromium
 COPY --from=builder /home/node/app/ .

@@ -51,10 +51,6 @@
       "--ignore-certificate-errors-spki-list"
     ]
   },
-  "mapper": {
-    "enable": true,
-    "prefix": "tagone-"
-  },
   "db": {
     "mongodbDatabase": "tokens",
     "mongodbCollection": "",

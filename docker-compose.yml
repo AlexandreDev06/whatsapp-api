@@ -12,11 +12,13 @@ services:
       - 5050:3000
     tty: true
     depends_on:
-      - postgres
+      - db
       - wppconnect-server
     volumes:
-      - ./recdin-whatsapp-api:/usr/src/app
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b 0.0.0.0 -p 3000"
+      - ./recdin-whatsapp-api:/recdin-whatsapp-api
+    env_file:
+      - ./recdin-whatsapp-api/.env
+    command: bash -c "rm -f tmp/pids/server.pid && rails s -b 0.0.0.0 -p 3000"
     networks:
       - recdin-network
 
@@ -29,23 +31,26 @@ services:
     hostname: sidekiq
     tty: true
     depends_on:
-      - postgres
+      - db
     volumes:
-      - ./recdin-whatsapp-api:/usr/src/app
-    command: bash -c "redis-server --daemonize yes && bundle exec sidekiq -C config/sidekiq.yml"
+      - ./recdin-whatsapp-api:/recdin-whatsapp-api
+    command: bash -c "redis-server --daemonize yes --requirepass Recdin2023! && bundle exec sidekiq -C config/sidekiq.yml"
     networks:
       - recdin-network
 
-  postgres:
-    image: postgres:12.2
-    container_name: postgres
-    hostname: postgres
-    ports:
-      - 5435:5432
+  db:
+    image: postgres:12.14
+    container_name: db
+    hostname: db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: Recdin2023!
-      POSTGRES_DB: recdin
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - recdin-network
 
   wppconnect-server:
     build:
@@ -59,9 +64,15 @@ services:
     networks:
       - recdin-network
     ports:
-      - 8081:21465
+      - 21465:21465
     tty: true
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
 networks:
   recdin-network:
     driver: bridge
+
+volumes:
+  postgres:
+  recdin-whatsapp-api:

@@ -1,9 +1,6 @@
 # imagem base
 FROM ruby:3.2.1-buster
 
-# Env of name app
-ENV NAME_APP=recdin-whatsapp-api
-
 # Install dependencies
 RUN apt-get update && apt-get install -y build-essential autoconf \
 bison libssl-dev libyaml-dev libreadline-dev lsb-release \
@@ -16,17 +13,17 @@ RUN echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://
 RUN apt-get update && apt-get install -y redis
 
 # create directory for the app
-RUN mkdir /NAME_APP
+RUN mkdir /recdin-whatsapp-api
 
 # Set working directory
-WORKDIR /NAME_APP
+WORKDIR /recdin-whatsapp-api
 
 # Add and install Gemfile
-ADD Gemfile /NAME_APP/Gemfile
-ADD Gemfile.lock /NAME_APP/Gemfile.lock
+ADD Gemfile /recdin-whatsapp-api/Gemfile
+ADD Gemfile.lock /recdin-whatsapp-api/Gemfile.lock
 
 # Install gems
 RUN bundle install
 
 # Add the rails app inside the container
-ADD . /NAME_APP
+ADD . /recdin-whatsapp-api

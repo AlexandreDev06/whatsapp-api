@@ -1,2 +1,42 @@
+require: 
+  - 'rubocop-rails'
+  - 'rubocop-rspec'
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'bin/bundle'
+    - 'node_modules/**/*'
+    - 'Guardfile'
+    - 'db/schema.rb'
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/routes.rb'
+    - 'config/routes/*'
+    - 'config/environments/*'
+    - 'lib/tasks/*'
+    - 'db/seeds/*'
+    - 'spec/controllers/*'
+
+Metrics/MethodLength:
+  Max: 20
+  Exclude:
+    - 'db/migrate/*'
+
 Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 20
+
+Naming/VariableNumber:
+  Enabled: false
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+
+Rails/ApplicationController:
   Enabled: false

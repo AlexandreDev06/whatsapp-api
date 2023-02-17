@@ -1,5 +1,4 @@
 class WppSessionsController < ApplicationController
-  before_action :set_user, only: %i[create_session status_session]
 
   def create_session
     response = Whatsapp::SessionManager.new(@user).start_session
@@ -8,6 +7,11 @@ class WppSessionsController < ApplicationController
 
   def status_session
     response = Whatsapp::SessionManager.new(@user).status_session
+    render json: response.to_json, status: :ok
+  end
+
+  def close_session
+    response = Whatsapp::SessionManager.new(@user).close_session
     render json: response.to_json, status: :ok
   end
 end

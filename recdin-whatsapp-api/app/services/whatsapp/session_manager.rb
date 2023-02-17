@@ -27,6 +27,19 @@ module Whatsapp
       end
     end
 
+    def close_session
+      response = HTTParty.post(
+        "#{api_url}/close-session",
+        headers: { Authorization: "Bearer #{user.wpp_bearer_token}" }
+      )
+      body = JSON.parse(response.body)
+      if body['status'] == true
+        { status: 'CLOSED', message: 'Session closed.' }
+      else
+        { status: 'ERROR', message: 'Check the status session, if connected, try to close session again.' }
+      end
+    end
+
     def generate_token
       response = HTTParty.post("#{api_url}/#{api_secret_key}/generate-token")
       response_body = JSON.parse(response.body)

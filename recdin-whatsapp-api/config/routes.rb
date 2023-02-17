@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       resource :wpp_sessions, only: [] do
         post 'create_session'
         get 'status_session'
+        post 'close_session'
       end
 
       resource :messages, only: [] do

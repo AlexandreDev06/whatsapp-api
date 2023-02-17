@@ -3,7 +3,9 @@ module Whatsapp
     def call(message_id)
       @message = Message.find(message_id)
       check_contact_exist
+      set_typing
       send_message
+      stop_typing
       { status: 'Sended' }
     rescue StandardError => e
       { status: 'ERROR', message: e.message }
@@ -18,6 +20,23 @@ module Whatsapp
       )
       body = JSON.parse(response.body)
       raise 'Contact not found in Whatsapp.' if body['response']['isWAContact'] == false
+    end
+
+    def set_typing
+      HTTParty.post(
+        "#{api_url}/typing",
+        headers: { Authorization: "Bearer #{user.wpp_bearer_token}", 'Content-Type': 'application/json' },
+        body: { phone: @message.phone_number, value: true }.to_json
+      )
+      sleep rand(3..5).seconds
+    end
+
+    def stop_typing
+      HTTParty.post(
+        "#{api_url}/typing",
+        headers: { Authorization: "Bearer #{user.wpp_bearer_token}", 'Content-Type': 'application/json' },
+        body: { phone: @message.phone_number, value: false }.to_json
+      )
     end
 
     def send_message

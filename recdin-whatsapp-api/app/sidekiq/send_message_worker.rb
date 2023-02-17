@@ -7,7 +7,7 @@ class SendMessageWorker
     if response['status'] == 'SENDED'
       message.update!(status: 'sended')
     else
-      message.update(status: 'error', description_error: response['message'])
+      message.update(status: 'error', error_description: response['message'])
     end
   end
 end

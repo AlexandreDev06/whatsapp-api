@@ -36,7 +36,7 @@ class MessagesController < ApplicationController
       time += time_remaining.hour.hours + time_remaining.min.minutes
       time_is_less_than_last_message?(time)
     else
-      set_time_will_send + rand(60..120).seconds
+      set_time_will_send + rand(30..60).seconds
     end
   end
 
@@ -60,7 +60,7 @@ class MessagesController < ApplicationController
 
   def time_is_less_than_last_message?(time)
     if time < Message.last.will_send_at
-      Message.last.will_send_at + rand(60..120).seconds
+      Message.last.will_send_at + rand(30..60).seconds
     else
       time
     end

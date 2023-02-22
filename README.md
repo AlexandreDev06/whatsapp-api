@@ -1,24 +1,7 @@
-# README
+# Config basics
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project created for use in anothers projects with library wppconnect-server (https://github.com/wppconnect-team/wppconnect-server)
 
-Things you may want to cover:
+For run this project, use foreman for start services in local
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+But in almos cases use the Dockerfile config for use with docker compose in anothers projects

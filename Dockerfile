@@ -1,4 +1,5 @@
-# imagem base
+# This file is used to build in anothers aplications
+# image base of Ruby
 FROM ruby:3.2.1-buster
 
 # Install dependencies

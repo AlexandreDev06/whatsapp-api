@@ -12,38 +12,20 @@ services:
       - 3030:3000
     tty: true
     depends_on:
-      - db
+      - postgres
       - wppconnect-server
     volumes:
       - ./recdin-whatsapp-api:/recdin-whatsapp-api
     env_file:
       - ./recdin-whatsapp-api/.env
-    command: bash -c "rm -f tmp/pids/server.pid && rails s -b 0.0.0.0 -p 3000"
+    command: bash -c "foreman s -f Procfile.dev"
     networks:
       - recdin-network
 
-  sidekiq:
-    build:
-      context: ./recdin-whatsapp-api
-      dockerfile: Dockerfile
-    image: sidekiq
-    container_name: sidekiq
-    hostname: sidekiq
-    tty: true
-    depends_on:
-      - db
-    volumes:
-      - ./recdin-whatsapp-api:/recdin-whatsapp-api
-    command: bash -c "redis-server --requirepass Recdin2023! --daemonize yes && bundle exec sidekiq -C config/sidekiq.yml"
-    ports:
-      - 6379:6379
-    networks:
-      - recdin-network
-
-  db:
+  postgres:
     image: postgres:12.14
-    container_name: db
-    hostname: db
+    container_name: postgres
+    hostname: postgres
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: Recdin2023!

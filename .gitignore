@@ -5,34 +5,34 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
-/recdin-whatsapp-api/.bundle
+.bundle
 
 # Ignore the default SQLite database.
-/recdin-whatsapp-api/db/*.sqlite3
-/recdin-whatsapp-api/db/*.sqlite3-*
+db/*.sqlite3
+db/*.sqlite3-*
 
 # Ignore all logfiles and tempfiles.
-/recdin-whatsapp-api/log/*
-/recdin-whatsapp-api/tmp/*
-/recdin-whatsapp-api/log/.keep
-/recdin-whatsapp-api/tmp/.keep
+log/*
+tmp/*
+log/.keep
+tmp/.keep
 
 # Ignore pidfiles, but keep the directory.
-/recdin-whatsapp-api/tmp/pids/*
-/recdin-whatsapp-api/tmp/pids/
-/recdin-whatsapp-api/tmp/pids/.keep
+tmp/pids/*
+tmp/pids/
+tmp/pids/.keep
 
 # Ignore uploaded files in development.
-/recdin-whatsapp-api/storage/*
-/recdin-whatsapp-api/storage/.keep
-/recdin-whatsapp-api/tmp/storage/*
-/recdin-whatsapp-api/tmp/storage/
-/recdin-whatsapp-api/tmp/storage/.keep
+storage/*
+storage/.keep
+tmp/storage/*
+tmp/storage/
+tmp/storage/.keep
 
 # Ignore master key for decrypting credentials and more.
-/recdin-whatsapp-api/config/master.key
+config/master.key
 
 # Ignoer dumb rdb of redis
-/recdin-whatsapp-api/dump.rdb
+dump.rdb
 # ignore envs
-/recdin-whatsapp-api/.env
+.env

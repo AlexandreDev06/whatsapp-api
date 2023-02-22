@@ -1,7 +1,7 @@
 # See https://git-scm.com/docs/gitattributes for more about git attribute files.
 
 # Mark the database schema as having been generated.
-/recdin-whatsapp-api/db/schema.rb linguist-generated
+db/schema.rb linguist-generated
 
 # Mark any vendored files as having been vendored.
-/recdin-whatsapp-api/vendor/* linguist-vendored
+vendor/* linguist-vendored

@@ -84,6 +84,7 @@ GEM
       dotenv (= 2.8.1)
       railties (>= 3.2)
     erubi (1.12.0)
+    foreman (0.87.2)
     globalid (1.1.0)
       activesupport (>= 5.0)
     httparty (0.21.0)
@@ -214,6 +215,7 @@ DEPENDENCIES
   bootsnap
   debug
   dotenv-rails (~> 2.7)
+  foreman (~> 0.87)
   httparty (~> 0.20)
   jwt (~> 2.2)
   pg (~> 1.1)

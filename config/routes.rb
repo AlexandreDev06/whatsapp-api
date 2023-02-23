@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  root to: 'application#welcome'
+
   resources :api, only: [] do
     collection do
       mount Sidekiq::Web => '/sidekiq'

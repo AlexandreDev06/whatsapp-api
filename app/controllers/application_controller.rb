@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::API
   before_action :authenticate_user
   before_action :set_user
+  skip_before_action :authenticate_user, only: [:welcome]
+
+  def welcome
+    render json: { status: 'Api running.', message: 'Check the repository for more information and docs. https://github.com/AlexandreDev06/recdin-whatsapp-api' }
+  end
 
   private
 

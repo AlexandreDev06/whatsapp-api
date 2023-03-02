@@ -63,5 +63,5 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   
   # config hostname of docker
-  config.hosts << 'wpp-recdin'
+  config.hosts.clear
 end

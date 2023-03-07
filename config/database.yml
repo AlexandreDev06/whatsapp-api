@@ -9,7 +9,7 @@ default: &default
 
 development:
   <<: *default
-  database: recdin_dev
+  database: <%= ENV.fetch("DATABASE_NAME") { 'recdin_db' } %>
 
 test:
   <<: *default
@@ -17,4 +17,4 @@ test:
 
 production:
   <<: *default
-  database: <%= ENV.fetch("DATABASE_NAME") { 'recdin_db' } %>
+  database: <%= ENV.fetch("DATABASE_NAME_PROD") { 'recdin_db' } %>

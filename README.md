@@ -94,3 +94,23 @@ But in almost cases use the Dockerfile config for use with docker compose in ano
   "message": "Message will sent at: 1 minutes"
 }
 ```
+
+## Example env
+
+```
+REDIS_URL=redis://localhost:6379/1
+REDIS_PASSWORD=postgres
+
+# Database config 
+DATABASE_HOST=postgres
+DATABASE_PORT=5432
+DATABASE_NAME=recdin
+DATABASE_USER=postgres
+DATABASE_PASSWORD=postgres
+
+# Whatsapp 
+WHATSAPP_URL_LOCALHOST=http://wppconnect-server:21465
+WHATSAPP_SECRET_KEY=My53cr3tKY
+```
+
+But alter this envs according your enviroment

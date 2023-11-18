@@ -19,7 +19,7 @@ But in almost cases use the Dockerfile config for use with docker compose in ano
 ```
 {
   "email": "xandemacedo1712@gmail.com",
-  "password": "Recdin2023!"
+  "password": "Whatsapp123!"
 }
 ```
 <b>response</b>: <br>
@@ -99,12 +99,11 @@ But in almost cases use the Dockerfile config for use with docker compose in ano
 
 ```
 REDIS_URL=redis://localhost:6379/1
-REDIS_PASSWORD=postgres
+REDIS_PASSWORD=RedisPassword
 
 # Database config 
 DATABASE_HOST=postgres
 DATABASE_PORT=5432
-DATABASE_NAME=recdin
 DATABASE_USER=postgres
 DATABASE_PASSWORD=postgres
 

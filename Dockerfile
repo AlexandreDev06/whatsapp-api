@@ -13,17 +13,17 @@ RUN echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://
 RUN apt-get update && apt-get install -y redis
 
 # create directory for the app
-RUN mkdir /recdin-whatsapp-api
+RUN mkdir /whatsapp-api
 
 # Set working directory
-WORKDIR /recdin-whatsapp-api
+WORKDIR /whatsapp-api
 
 # Add and install Gemfile
-ADD Gemfile /recdin-whatsapp-api/Gemfile
-ADD Gemfile.lock /recdin-whatsapp-api/Gemfile.lock
+ADD Gemfile ./Gemfile
+ADD Gemfile.lock ./Gemfile.lock
 
 # Install gems
 RUN bundle install
 
 # Add the rails app inside the container
-ADD . /recdin-whatsapp-api
+ADD . .

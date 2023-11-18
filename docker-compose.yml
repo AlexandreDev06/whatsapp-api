@@ -1,13 +1,11 @@
 version: '3'
 
 services:
-  recdin-whatsapp-api:
-    build:
-      context: ./recdin-whatsapp-api
-      dockerfile: Dockerfile
-    image: recdin_app
-    container_name: recdin_app
-    hostname: recdin_app
+  whatsapp-api:
+    build: .
+    image: whatsapp_app
+    container_name: whatsapp_app
+    hostname: whatsapp_app
     ports:
       - 3030:3000
     tty: true
@@ -15,26 +13,26 @@ services:
       - postgres
       - wppconnect-server
     volumes:
-      - ./recdin-whatsapp-api:/recdin-whatsapp-api
+      - .:/whatsapp-api
     env_file:
-      - ./recdin-whatsapp-api/.env
+      - .env
     command: bash -c "foreman s -f Procfile.dev"
     networks:
-      - recdin-network
+      - whatsapp-network
 
   postgres:
     image: postgres:12.14
     container_name: postgres
     hostname: postgres
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Recdin2023!
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
     volumes:
       - postgres:/var/lib/postgresql/data
     ports:
       - 5432:5432
     networks:
-      - recdin-network
+      - whatsapp-network
 
   wppconnect-server:
     build:
@@ -46,7 +44,7 @@ services:
     hostname: wppconnect-server
     entrypoint: docker-entrypoint.sh yarn dev
     networks:
-      - recdin-network
+      - whatsapp-network
     ports:
       - 21465:21465
     tty: true
@@ -54,9 +52,9 @@ services:
       - "host.docker.internal:host-gateway"
 
 networks:
-  recdin-network:
+  whatsapp-network:
     driver: bridge
 
 volumes:
   postgres:
-  recdin-whatsapp-api:
+  whatsapp-api:
